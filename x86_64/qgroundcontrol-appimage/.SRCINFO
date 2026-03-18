@@ -1,0 +1,20 @@
+pkgbase = qgroundcontrol-appimage
+	pkgdesc = Cross-platform ground control station for drones (Android, iOS, Mac OS, Linux, Windows)
+	pkgver = 5.0.8
+	pkgrel = 1.0
+	url = https://github.com/mavlink/qgroundcontrol
+	install = .install
+	arch = x86_64
+	license = MIT
+	makedepends = 7zip
+	depends = fuse2
+	depends = gst-plugins-bad
+	depends = gst-libav
+	depends = gst-plugins-base
+	depends = libxkbcommon-x11
+	depends = xcb-util-cursor
+	options = !strip
+	source = qgroundcontrol-v5.0.8.appimage::https://github.com/mavlink/qgroundcontrol/releases/download/v5.0.8/QGroundControl-x86_64.AppImage
+	sha256sums = 06969c67ef58ea063def0a8271447a1cc385438c4a7df36813315b4475146737
+
+pkgname = qgroundcontrol-appimage
