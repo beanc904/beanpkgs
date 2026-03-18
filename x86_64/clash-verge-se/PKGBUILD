@@ -1,0 +1,32 @@
+# Maintainer: Azure Zeng <weedycn at outlook dot com>
+# Contributor: Pylogmon <pylogmon@outlook.com>
+
+pkgname=clash-verge-se
+_pkgname=clash-verge-rev
+pkgver=2.4.4
+pkgrel=1
+pkgdesc="Continuation of Clash Verge | A Clash Meta GUI based on Tauri | Special Edition for Arch"
+arch=('x86_64')
+url="https://github.com/clash-verge-rev/clash-verge-rev"
+_url="https://github.com/beanc904/DevelopingHandbook"
+license=('GPL3')
+depends=('webkit2gtk-4.1' 'gtk3' 'libayatana-appindicator' 'rav1e')
+conflicts=("$_pkgname" "$_pkgname-alpha" "$_pkgname-alpha-bin" "$_pkgname-bin" "$_pkgname-git" "clash-verge" "clash-verge-bin")
+options=(!strip)
+install=.install
+
+source_x86_64=("${pkgname}-${pkgver}-x86_64.deb::${_url}/releases/download/clash-verge-rev-se-v2.4.4/Clash.Verge.Special.Edition_${pkgver}_amd64.deb")
+
+sha256sums_x86_64=("67e9b1b3180c57db45e33a374c7f63712385a094f6dc11404779bce451b2a8fe")
+
+prepare() {
+  mkdir -p ${srcdir}/rootfs
+  tar xpf data.tar.gz -C ${srcdir}/rootfs
+  sed -i -E "s|Exec=clash-verge %u|Exec=env WAYLAND_DISPLAY= clash-verge %u|g" \
+    "${srcdir}/rootfs/usr/share/applications/Clash Verge.desktop"
+}
+
+package() {
+  cp -r ${srcdir}/rootfs/* ${pkgdir}
+  #chown -R root:root ${pkgdir}
+}
