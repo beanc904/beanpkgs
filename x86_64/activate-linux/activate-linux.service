@@ -1,0 +1,13 @@
+[Unit]
+Description=Watermark of Activate Arch Linux
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStartPre=/bin/sh -c 'while [ -z "$WAYLAND_DISPLAY" ]; do sleep 1; done'
+ExecStart=/usr/bin/activate-linux -t "Activated Arch" -m "Go to Settings to deactivate." -s 2
+ExecStop=/bin/kill $MAINPID
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

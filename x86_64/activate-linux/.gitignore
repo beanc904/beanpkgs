@@ -1,0 +1,6 @@
+*
+!.gitignore
+!.install
+!PKGBUILD
+!.SRCINFO
+!activate-linux.service
